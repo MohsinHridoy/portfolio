@@ -145,7 +145,7 @@ class _HomeClockState extends State<HomeClock>
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image:
-                                          AssetImage("assets/images/img_2.png"),
+                                          AssetImage("assets/images/leg.png"),
                                       // Replace with the actual image path
                                       fit: BoxFit
                                           .cover, // Adjust the fit as needed

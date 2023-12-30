@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/screens/cert/cert.dart';
 import 'package:untitled1/screens/home/homeClock.dart';
+import 'package:untitled1/screens/login/intro/intro.dart';
+import 'package:untitled1/screens/login/login/login.dart';
+import 'package:untitled1/screens/login/otp/otp.dart';
 import 'package:untitled1/screens/nightmood/home/nightmoodscreen.dart';
 import 'package:untitled1/screens/productdetails/productsDetails.dart';
+import 'package:untitled1/screens/realstate/home.dart';
 import 'package:untitled1/screens/rough/rough.dart';
 import 'package:untitled1/screens/video/video/video.dart';
 import 'package:untitled1/screens/video/video1.dart';
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage2(),
+      home: Home(),
     );
   }
 }

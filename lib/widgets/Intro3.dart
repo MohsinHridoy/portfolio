@@ -59,7 +59,7 @@ class _Intro3State extends State<Intro3> with SingleTickerProviderStateMixin {
                           height: 291.85,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage("assets/img_2.png"),
+                              image: AssetImage("assets/leg.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
