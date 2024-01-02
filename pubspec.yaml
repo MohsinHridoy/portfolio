@@ -68,6 +68,7 @@ flutter:
     - assets/icons/
     - assets/video/
     - assets/intro/
+    - assets/realstate/home/
     - assets/intro/login/
     - assets/intro/girl/
     - assets/nightmoodscreen/
