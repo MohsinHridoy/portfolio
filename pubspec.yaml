@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   convex_bottom_bar: ^3.2.0
   flutter_svg: ^0.22.0  # Use the latest version available
+  google_maps_flutter: ^2.5.0
+  webview_flutter: ^4.4.3
+  http: ^0.13.3
+  path_provider: ^2.1.1
+
 
 
 
@@ -64,6 +69,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/www/styles/style.css
+    - assets/www/index.html
+
     - assets/images/
     - assets/icons/
     - assets/video/
