@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:untitled1/model/realstate/details/review.dart';
 
 import '../../../model/realstate/details/details.dart';
 
@@ -41,8 +42,44 @@ class _DetailsScreenState extends State<DetailsScreen> {
     ),
     // Add more items as needed
   ];
+  List<Review> reviews = [
+    Review(
+      rating: 4.2,
+      date: '2 days ago',
+      comment:
+          'I recently moved here, and it has been an incredible experience!',
+      authorName: 'Ricardo Black',
+      authorRole: 'Designer',
+    ),
+    Review(
+      rating: 4.2,
+      date: '2 days ago',
+      comment:
+          'I recently moved here, and it has been an incredible experience!',
+      authorName: 'Ricardo Black',
+      authorRole: 'Designer',
+    ),
+    Review(
+      rating: 4.2,
+      date: '2 days ago',
+      comment:
+          'I recently moved here, and it has been an incredible experience!',
+      authorName: 'Ricardo Black',
+      authorRole: 'Designer',
+    ),
+    Review(
+      rating: 4.2,
+      date: '2 days ago',
+      comment:
+          'I recently moved here, and it has been an incredible experience!',
+      authorName: 'Ricardo Black',
+      authorRole: 'Designer',
+    ),
+    // Add more reviews as needed
+  ];
+
   final Completer<GoogleMapController> _controller =
-  Completer<GoogleMapController>();
+      Completer<GoogleMapController>();
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -51,7 +88,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -87,94 +123,207 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       letterSpacing: 0.42,
                     ),
                   ),
-              Container(
-                    width: 342,
-                height: 196,
-                clipBehavior: Clip.antiAlias,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 3, color: Colors.white),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  shadows: [
-                    BoxShadow(
-                      color: Color(0x260B1A37),
-                      blurRadius: 22,
-                      offset: Offset(2, 4),
-                      spreadRadius: 0,
-                    )
-                  ],
-                ),
-               child: GoogleMap(
-                 mapType: MapType.hybrid,
-                 initialCameraPosition: _kGooglePlex,
-                 onMapCreated: (GoogleMapController controller) {
-                   _controller.complete(controller);
-                 },
-               ),
-              )
-                ],
-              ),
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Reviews',
-                        style: TextStyle(
-                          color: Color(0xFF242B5C),
-                          fontSize: 18,
-                          fontFamily: 'Manrope',
-                          fontWeight: FontWeight.w700,
-                          height: 0,
-                          letterSpacing: 0.54,
-                        ),
-                      ),
-                      Text(
-                        'View all',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Color(0xFF3577FF),
-                          fontSize: 14,
-                          fontFamily: 'Manrope',
-                          fontWeight: FontWeight.w600,
-                          height: 0.11,
-                          letterSpacing: 0.42,
-                        ),
-                      )
-                    ],
-                  ),
                   Container(
-                    width: 267,
-                    height: 167,
+                    width: 342,
+                    height: 196,
+                    clipBehavior: Clip.antiAlias,
                     decoration: ShapeDecoration(
-                      color: Colors.white,
                       shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 3, color: Colors.white),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       shadows: [
                         BoxShadow(
-                          color: Color(0x19212246),
-                          blurRadius: 60,
-                          offset: Offset(6, 16),
+                          color: Color(0x260B1A37),
+                          blurRadius: 22,
+                          offset: Offset(2, 4),
                           spreadRadius: 0,
                         )
                       ],
+                    ),
+                    child: GoogleMap(
+                      mapType: MapType.hybrid,
+                      initialCameraPosition: _kGooglePlex,
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
                     ),
                   )
                 ],
               ),
             ),
+            reviewItem(),
             bottomNavbar()
-
           ],
         ),
       ),
     );
   }
-  Widget bottomNavbar(){
+
+  Widget reviewItem() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 221,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                'Reviews',
+                style: TextStyle(
+                  color: Color(0xFF242B5C),
+                  fontSize: 18,
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w700,
+                  height: 0,
+                  letterSpacing: 0.54,
+                ),
+              ),
+              Text(
+                'View all',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  color: Color(0xFF3577FF),
+                  fontSize: 14,
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                  height: 0.11,
+                  letterSpacing: 0.42,
+                ),
+              ),
+            ],
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            child: ListView.builder(
+              itemCount: reviews.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                Review review = reviews[index];
+
+                return Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 267,
+                          height: 187,
+                          decoration: ShapeDecoration(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            shadows: [
+                              BoxShadow(
+                                color: Color(0x19212246),
+                                blurRadius: 60,
+                                offset: Offset(6, 16),
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    '${review.rating}',
+                                    style: TextStyle(
+                                      color: Color(0xFF1F2128),
+                                      fontSize: 14,
+                                      fontFamily: 'Manrope',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${review.date}',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      color: Color(0xFFA5A6A9),
+                                      fontSize: 11,
+                                      fontFamily: 'Manrope',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0.15,
+                                      letterSpacing: 0.01,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 235,
+                                child: Text(
+                                  '${review.comment}',
+                                  style: TextStyle(
+                                    color: Color(0xFF767676),
+                                    fontSize: 13,
+                                    fontFamily: 'Manrope',
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 0.01,
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: ShapeDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            "assets/realstate/home/man1.png"),
+                                        fit: BoxFit.fill,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        '${review.authorName}',
+                                        style: TextStyle(
+                                          color: Color(0xFF3B53AD),
+                                          fontSize: 13,
+                                          fontFamily: 'Manrope',
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 0.03,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${review.authorRole}',
+                                        style: TextStyle(
+                                          color: Color(0xFFA5A6A9),
+                                          fontSize: 11,
+                                          fontFamily: 'Manrope',
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: 0.01,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget bottomNavbar() {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 86,
@@ -192,40 +341,40 @@ class _DetailsScreenState extends State<DetailsScreen> {
               letterSpacing: 0.11,
             ),
           ),
-      Container(
-        width: 137,
-        height: 48,
-        padding: const EdgeInsets.only(
-          top: 20,
-          left: 21,
-          right: 20,
-          bottom: 20,
-        ),
-        clipBehavior: Clip.antiAlias,
-        decoration: ShapeDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(1.00, -0.03),
-            end: Alignment(-1, 0.03),
-            colors: [Color(0xFF246BFD), Color(0xFF24A1FD)],
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          shadows: [
-            BoxShadow(
-              color: Color(0x59247BFD),
-              blurRadius: 15,
-              offset: Offset(0, 10),
-              spreadRadius: -7,
-            )
-          ],
-        ),
-      )
+          Container(
+            width: 137,
+            height: 48,
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 21,
+              right: 20,
+              bottom: 20,
+            ),
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(1.00, -0.03),
+                end: Alignment(-1, 0.03),
+                colors: [Color(0xFF246BFD), Color(0xFF24A1FD)],
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              shadows: [
+                BoxShadow(
+                  color: Color(0x59247BFD),
+                  blurRadius: 15,
+                  offset: Offset(0, 10),
+                  spreadRadius: -7,
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
-
   }
+
   Widget propertyDetails() {
     return SizedBox(
       width: 342,
@@ -314,19 +463,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   child: Stack(children: [
                 galleryImage(gallaryImage[2]),
                 Positioned(
-                  top:80,
+                    top: 80,
                     left: 40,
                     child: Text(
-                  '+${gallaryImage.length}',
-                  style: TextStyle(
-                    color: Color(0xFFFBFCFC),
-                    fontSize: 18,
-                    fontFamily: 'Manrope',
-                    fontWeight: FontWeight.w800,
-                    height: 0.08,
-                    letterSpacing: 0.20,
-                  ),
-                ))
+                      '+${gallaryImage.length}',
+                      style: TextStyle(
+                        color: Color(0xFFFBFCFC),
+                        fontSize: 18,
+                        fontFamily: 'Manrope',
+                        fontWeight: FontWeight.w800,
+                        height: 0.08,
+                        letterSpacing: 0.20,
+                      ),
+                    ))
               ])),
             ],
           ),
@@ -369,52 +518,69 @@ class _DetailsScreenState extends State<DetailsScreen> {
               itemCount: itemList.length,
               itemBuilder: (context, index) {
                 return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    image: DecorationImage(
-                      image: AssetImage(itemList[index].imageUrl),
-                      fit: BoxFit
-                          .cover, // Adjust this property based on your needs
+                  child: Stack(children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        image: DecorationImage(
+                          image: AssetImage(itemList[index].imageUrl),
+                          fit: BoxFit
+                              .cover, // Adjust this property based on your needs
+                        ),
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      bottom: 0,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 7,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.550000011920929),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start, // You can use other values like .start, .end, .spaceBetween, etc.
+
+                          children: [
+                            Text(
+                              itemList[index].category,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Manrope',
+                                fontWeight: FontWeight.w700,
+                                height: 0.07,
+                                letterSpacing: 0.20,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.location_on_rounded,color: Colors.blue,),
+                                Text(
+                                  'Tacoma, WA 98402',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: 'Manrope',
+                                    fontWeight: FontWeight.w400,
+                                    // letterSpacing: 0.40,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ]),
                 );
               },
             ),
           ),
-          Positioned(
-            bottom: 0,
-            child: Container(
-              width: 390,
-              height: MediaQuery.of(context).size.height / 7,
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.550000011920929),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: 260,
-                    child: Text(
-                      'Villaggio Apartment',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: 'Manrope',
-                        fontWeight: FontWeight.w700,
-                        height: 0.07,
-                        letterSpacing: 0.20,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      itemList.length,
-                      (index) => buildIndicator(index),
-                    ),
-                  ),
-                ],
-              ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              itemList.length,
+              (index) => buildIndicator(index),
             ),
           ),
         ],
@@ -423,14 +589,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
   }
 
   Widget buildIndicator(int index) {
-    double indicatorSize = _currentPage == index ? 15.0 : 8.0;
+    double indicatorSize = _currentPage == index ? 40.0 : 15.0;
     return Container(
       width: indicatorSize,
-      height: 8,
+      height: 5,
       margin: EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-        shape: _currentPage == index ? BoxShape.rectangle : BoxShape.circle,
-        color: _currentPage == index ? Colors.red : Colors.grey,
+      // decoration: BoxDecoration(
+      //   shape: _currentPage == index ? BoxShape.rectangle : BoxShape.circle,
+      //   color: _currentPage == index ? Color(0xFF2688FF) : Colors.grey,
+      // ),
+      decoration: ShapeDecoration(
+        color: _currentPage == index ? Color(0xFF2688FF) : Colors.grey,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
       ),
     );
   }
